@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- NMML reference: https://gist.github.com/1763850 -->
+	
+	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
+	<meta title="LD26" package="com.example.app" version="1.0.0" company="julsam" />
+	
+	<!-- output -->
+	<app main="Main" file="LD26" path="bin" />
+	
+	<!--<window fps="30" orientation="portrait" background="0x333333" />-->
+	<window fps="60" resizable="true" background="0x333333" hardware="true" />
+	<window width="640" height="480" resizable="false" unless="mobile" />
+	<window fullscreen="true" if="mobile" />
+	
+	<!-- classpath, haxe libs -->
+	<source path="src" />
+	
+	<haxelib name="nme" />
+	<!--<haxelib name="HaxePunk" />-->
+	<haxelib name="polygonal" />
+	<haxelib name="flashconnect" if="flash" />
+	
+	<!-- assets -->
+	<assets path="assets/graphics" rename="gfx" include="*.png|*.jpg" />
+	<assets path="assets/audio" rename="sfx" include="*.mp3" if="flash" />
+	<assets path="assets/audio" rename="sfx" include="*.wav|*.ogg" unless="flash" />
+	<assets path="assets/font" rename="font" include="*.ttf" />
+	<assets path="assets/atlas" rename="atlas" include="*.xml" />
+	<assets path="assets/levels" rename="levels" include="*.oel" />
+	
+	<!-- icon -->
+	<icon path="assets/nme.svg" />
+</project>
