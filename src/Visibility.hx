@@ -103,11 +103,11 @@ typedef EndPoint = {x:Float, y:Float, begin:Bool, segment:Segment, angle:Float, 
 
 
     // Helper function to construct segments along the outside perimeter
-    private function loadEdgeOfMap(size:Int, margin:Int) {
-        addSegment(margin, margin, margin, size-margin);
-        addSegment(margin, size-margin, size-margin, size-margin);
-        addSegment(size-margin, size-margin, size-margin, margin);
-        addSegment(size-margin, margin, margin, margin);
+    private function loadEdgeOfMap(width:Int, height:Int, margin:Int) {
+        addSegment(margin, margin, margin, height-margin);
+        addSegment(margin, height-margin, width-margin, height-margin);
+        addSegment(width-margin, height-margin, width-margin, margin);
+        addSegment(width-margin, margin, margin, margin);
         // NOTE: if using the simpler distance function (a.d < b.d)
         // then we need segments to be similarly sized, so the edge of
         // the map needs to be broken up into smaller segments.
@@ -115,10 +115,10 @@ typedef EndPoint = {x:Float, y:Float, begin:Bool, segment:Segment, angle:Float, 
 
     
     // Load a set of square blocks, plus any other line segments
-    public function loadMap(size, margin, blocks:Array<Block>, walls:Array<Segment>) {
+    public function loadMap(width, height, margin, blocks:Array<Block>, walls:Array<Segment>) {
         segments.clear();
         endpoints.clear();
-        loadEdgeOfMap(size, margin);
+        loadEdgeOfMap(width, height, margin);
         
         for (block in blocks) {
             var x = block.x;

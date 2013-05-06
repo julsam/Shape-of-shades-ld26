@@ -159,7 +159,7 @@ class GameScene extends Scene
 		var segs:Array<Visibility.Segment> = new Array<Visibility.Segment>();
 		
 		v = new Visibility();
-		v.loadMap(G.level.width, 0, blocks, segs);
+		v.loadMap(G.level.width, G.level.height, 0, blocks, segs);
 		v.setLightLocation(G.player.x, G.player.y);
 		v.sweep();
 		
@@ -203,7 +203,7 @@ class GameScene extends Scene
 		//if (G.player.moved)
 		{
 			var segs:Array<Visibility.Segment> = new Array<Visibility.Segment>();
-			v.loadMap(G.level.width, 0, blocks, segs);
+			v.loadMap(G.level.width, G.level.height, 0, blocks, segs);
 			G.level.loadSegmentsInScene(v);
 			v.setLightLocation(G.player.x, G.player.y);
 			v.sweep();
