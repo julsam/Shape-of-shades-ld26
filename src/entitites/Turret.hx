@@ -36,16 +36,16 @@ class Turret extends AbstractEntity
 			{
 				// up
 				case 0:
-					scene.add(new Bullet(x + halfWidth, y - 8, direction, bulletSpeed));
+					scene.create(Bullet).spawn(x + halfWidth, y - 8, direction, bulletSpeed);
 				// right
 				case 1:
-					scene.add(new Bullet(x + width + 2, y + halfHeight, direction, bulletSpeed));
+					scene.create(Bullet).spawn(x + width + 2, y + halfHeight, direction, bulletSpeed);
 				// down
 				case 2:
-					scene.add(new Bullet(x + halfWidth, y + height + 2, direction, bulletSpeed));
+					scene.create(Bullet).spawn(x + halfWidth, y + height + 2, direction, bulletSpeed);
 				// left
 				case 3:
-					scene.add(new Bullet(x - 8, y + halfHeight, direction, bulletSpeed));
+					scene.create(Bullet).spawn(x - 8, y + halfHeight, direction, bulletSpeed);
 			}
 			timer -= shootTime;
 		}

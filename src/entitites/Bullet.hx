@@ -14,16 +14,22 @@ class Bullet extends AbstractEntity
 	public var direction(default, null):Int;
 	private var speed:Float;
 	
-	public function new(x:Float=0, y:Float=0, direction:Int=0, speed:Float=100) 
+	public function new() 
 	{
-		super(x, y);
+		super();
 		graphic = new Image(new BitmapData(8, 8, false, 0xffaaaa));
 		type = "Bullet";
+		setHitbox(8, 8);
+	}
+
+	public function spawn(x:Float=0, y:Float=0, direction:Int=0, speed:Float=100):Void
+	{
+		this.x = x;
+		this.y = y;
 		this.direction = direction;
 		this.speed = speed;
-		setHitbox(8, 8);
-		
 	}
+	
 	override public function update():Void
 	{
 		switch (direction)
@@ -46,16 +52,16 @@ class Bullet extends AbstractEntity
 		var m:Entity = null;
 		if (collide("Solid", x, y) != null)
 		{
-			scene.remove(this);
+			scene.recycle(this);
 		}
 		else if ((m = collide("Monster", x, y)) != null)
 		{
-			scene.remove(this);
+			scene.recycle(this);
 			cast(m, Monster).kill();
 		}
 		else if (collideWith(G.player, x, y) != null)
 		{
-			scene.remove(this);
+			scene.recycle(this);
 			G.player.kill();
 		}
 		
