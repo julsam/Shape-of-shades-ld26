@@ -29,8 +29,7 @@ class Main extends Engine
 	#end
 #end
 		
-		//super(640, 480, 60, false);
-		super();
+		super(640, 480, 30, false);
 	}
 
 	override public function init()

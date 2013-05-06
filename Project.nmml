@@ -9,7 +9,7 @@
 	<app main="Main" file="LD26" path="bin" />
 	
 	<!--<window fps="30" orientation="portrait" background="0x333333" />-->
-	<window fps="60" resizable="true" background="0x333333" hardware="true" />
+	<window fps="30" resizable="true" background="0x333333" hardware="true" />
 	<window width="640" height="480" resizable="false" unless="mobile" />
 	<window fullscreen="true" if="mobile" />
 	
