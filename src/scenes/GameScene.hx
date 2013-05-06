@@ -8,6 +8,7 @@ import com.haxepunk.Sfx;
 import com.haxepunk.tweens.misc.ColorTween;
 import com.haxepunk.utils.Draw;
 import control.Level;
+import entitites.BorderLimit;
 import entitites.GradientBackdrop;
 import entitites.KeysText;
 import entitites.Monster;
@@ -61,6 +62,7 @@ class GameScene extends Scene
 	
 	public var bgColors:Array<Int>;
 	private var backgroundPattern:BitmapData;
+	private var borderLimitList:Array<BorderLimit>;
 	
 	public function new() 
 	{
@@ -143,6 +145,16 @@ class GameScene extends Scene
 		//bgBlur.alpha = 0.5;
 		addGraphic(bgBlur, 95);
 		
+		// Border limit
+		borderLimitList = new Array<BorderLimit>();
+		borderLimitList.push(new BorderLimit(BORDER_TOP));
+		borderLimitList.push(new BorderLimit(BORDER_RIGHT));
+		borderLimitList.push(new BorderLimit(BORDER_BOTTOM));
+		borderLimitList.push(new BorderLimit(BORDER_LEFT));
+		for (el in borderLimitList) {
+			add(el);
+		}
+
 		blocks = new Array<Visibility.Block>();
 		var segs:Array<Visibility.Segment> = new Array<Visibility.Segment>();
 		
