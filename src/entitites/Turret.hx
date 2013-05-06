@@ -19,12 +19,13 @@ class Turret extends AbstractEntity
 	public function new(x:Float=0, y:Float=0, direction:Int=0) 
 	{
 		super(x, y);
-		graphic = new Image(new BitmapData(16, 16, false, 0xffaaaa));
+		//graphic = new Image(new BitmapData(16, 16, false, 0xffaaaa));
 		setHitbox(16, 16, 8, 8);
 		this.direction = direction;
 		shootTime = 1;
 		timer = 0;
 		bulletSpeed = 100;
+		visible = false;
 	}
 	
 	override public function update():Void
