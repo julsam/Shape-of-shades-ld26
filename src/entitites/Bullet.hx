@@ -1,9 +1,13 @@
 package entitites;
 
+import com.haxepunk.graphics.Graphiclist;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.HXP;
 import com.haxepunk.Entity;
 import nme.display.BitmapData;
+import nme.geom.Point;
+import scenes.GameScene;
 
 /**
  * ...
@@ -11,15 +15,31 @@ import nme.display.BitmapData;
  */
 class Bullet extends AbstractEntity
 {
+	private var bgSprite:Spritemap;
+	private var sprite:Spritemap;
 	public var direction(default, null):Int;
 	private var speed:Float;
 	
 	public function new() 
 	{
 		super();
-		graphic = new Image(new BitmapData(8, 8, false, 0xffaaaa));
+		//graphic = new Image(new BitmapData(8, 8, false, 0xffaaaa));
 		type = "Bullet";
 		setHitbox(8, 8);
+		
+		bgSprite = new Spritemap("gfx/bullet_inner.png", 16, 16);
+		bgSprite.add("anim", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 8);
+		bgSprite.play("anim");
+		bgSprite.centerOrigin();
+		
+		sprite = new Spritemap("gfx/bullet.png", 16, 16);
+		sprite.alpha = 0.5;
+		sprite.add("anim", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 8 );
+		sprite.play("anim");
+		sprite.centerOrigin();
+		graphic = new Graphiclist([bgSprite, sprite]);
+		
+		centerOrigin();
 	}
 
 	public function spawn(x:Float=0, y:Float=0, direction:Int=0, speed:Float=100):Void
@@ -32,6 +52,8 @@ class Bullet extends AbstractEntity
 	
 	override public function update():Void
 	{
+		bgSprite.color = GameScene.tweenBgColor.color;
+		
 		switch (direction)
 		{
 			case 0:
@@ -43,6 +65,10 @@ class Bullet extends AbstractEntity
 			case 3:
 				moveBy(-(HXP.elapsed * speed), 0);
 		}
+		
+		bgSprite.angle += 120 * HXP.elapsed;
+		sprite.angle += 120 * HXP.elapsed;
+		//graphic = new Graphiclist([bgSprite, sprite]);
 		
 		if (x <= 0 + halfWidth) 					destroy();
 		else if (x >= G.level.width - halfWidth) 	destroy();

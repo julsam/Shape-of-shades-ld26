@@ -2,6 +2,7 @@ package entitites;
 
 import com.haxepunk.Entity;
 import com.haxepunk.graphics.Image;
+import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.HXP;
 import nme.display.BitmapData;
 import nme.geom.Point;
@@ -18,12 +19,26 @@ class Monster extends AbstractEntity
 	public var angle(default, null):Float;
 	public var velocity(default, null):Point;
 	
+	private var sprite:Spritemap;
+	
 	public function new(x:Float=0, y:Float=0) 
 	{
 		super(x, y);
 		type = "Monster";
 		setHitbox(16, 16);
-		graphic = new Image(new BitmapData(16, 16, false, 0xffffff));
+		
+		var img:BitmapData = HXP.getBitmap("gfx/monster2b_t.png");
+		sprite = new Spritemap(img, 16, 16, changeAnimation);
+		//sprite.scale = 1.5;
+		sprite.add("anim0", [0, 4], 7, true);
+		sprite.add("anim1", [5, 1], 7, true);
+		sprite.add("anim2", [6, 2], 7, true);
+		sprite.add("anim3", [7, 3], 7, true);
+		sprite.play("anim0");
+		sprite.centerOrigin();
+		graphic = sprite;
+		centerOrigin();
+		
 		velocity = new Point();
 		angle = 0;
 		speed = 50;
@@ -32,6 +47,11 @@ class Monster extends AbstractEntity
 		randomTargetTime = 5;
 		timer = 0;
 		G.monstersList.push(this);
+	}
+	
+	private function changeAnimation():Void
+	{
+		sprite.play(HXP.choose(["anim0", "anim1", "anim2", "anim3"]));
 	}
 	
 	override public function update():Void 

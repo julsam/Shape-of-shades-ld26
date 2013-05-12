@@ -281,6 +281,43 @@ class GameScene extends Scene
 			// LIGHTEN	// murs non visibles
 			// SCREEN - pareil que ADD et LIGHTEN ? // murs un poil visibles
 			// SUBTRACT
+
+			// draw monsters
+			var entitiesTypeArray:Array<Dynamic> = new Array<Dynamic>();
+			HXP.scene.getType("Monster", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				var e = cast(el, Entity);
+				if (e.visible) {
+					e.render();
+				}
+			}
+			// draw bullets
+			entitiesTypeArray = [];
+			HXP.scene.getType("Bullet", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				var e = cast(el, Entity);
+				if (e.visible) {
+					e.render();
+				}
+			}
+			// draw key
+			entitiesTypeArray = [];
+			HXP.scene.getType("Key", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				var e = cast(el, Entity);
+				if (e.visible) {
+					e.render();
+				}
+			}
+			// draw exit
+			entitiesTypeArray = [];
+			HXP.scene.getType("Exit", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				var e = cast(el, Entity);
+				if (e.visible) {
+					e.render();
+				}
+			}
 		}
 	}
 	
