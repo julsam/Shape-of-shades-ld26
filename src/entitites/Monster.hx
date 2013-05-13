@@ -44,8 +44,7 @@ class Monster extends AbstractEntity
 		speed = 50;
 		walkSpeed = 50;
 		runSpeed = 80;
-		randomTargetTime = 5;
-		timer = 0;
+		timer = randomTargetTime = 5;
 		G.monstersList.push(this);
 	}
 	
@@ -69,7 +68,7 @@ class Monster extends AbstractEntity
 		
 	private function move():Void
 	{
-		if (distanceFrom(G.player) <= 300/* && scene.collideLine("Solid", Std.int(x), Std.int(y), Std.int(G.player.x), Std.int(G.player.y)) == null*/)
+		if (distanceFrom(G.player) <= 300 && scene.collideLine("Solid", Std.int(x), Std.int(y), Std.int(G.player.x), Std.int(G.player.y), G.GRID_SIZE) == null)
 		{
 			speed = runSpeed;
 			updateDirection(new Point(G.player.x, G.player.y));	
@@ -100,7 +99,7 @@ class Monster extends AbstractEntity
 	private function pickRandomPosition():Point
 	{
 		var p:Point = pickRandomTile();
-		if (G.level.isTileEmpty(p.x, p.y) && scene.collideLine("Solid", Std.int(x), Std.int(y), Std.int(p.x), Std.int(p.y)) == null) {
+		if (G.level.isTileEmpty(p.x, p.y)/* && scene.collideLine("Solid", Std.int(x), Std.int(y), Std.int(p.x), Std.int(p.y), G.GRID_SIZE) == null*/) {
 			return p;
 		}
 		return null;
