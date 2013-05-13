@@ -2,9 +2,9 @@ Shape of shades is an entry for Ludum Dare #26. The theme was 'Minimalism' and t
 Ludum Dare page : http://www.ludumdare.com/compo/ludum-dare-26/?action=preview&uid=2908  
 Author : @allinlabs  
 
-== Changelog ==
+### Changelog
 
-=== Version 1.1.0 ===
+#### Version 1.1.0
 
 * Release 1.1.0 + mainly clean up files
 * Added HelpText, changed font, improved screens with text
