@@ -94,6 +94,9 @@ class Player extends Entity
 			G.currentKeysCount++;
 		}
 		
+		// Emit particles
+		G.emitter.emit(x, y);
+
 		super.update();
 	}
 	

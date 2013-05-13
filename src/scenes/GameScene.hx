@@ -9,6 +9,7 @@ import com.haxepunk.tweens.misc.ColorTween;
 import com.haxepunk.utils.Draw;
 import control.Level;
 import entitites.BorderLimit;
+import entitites.EmitterEntity;
 import entitites.GradientBackdrop;
 import entitites.KeysText;
 import entitites.Monster;
@@ -164,6 +165,8 @@ class GameScene extends Scene
 		v.sweep();
 		
 		add(new KeysText());
+
+		add(G.emitter = new EmitterEntity());
 	}
 	
 	override public function update():Dynamic 
@@ -282,8 +285,14 @@ class GameScene extends Scene
 			// SCREEN - pareil que ADD et LIGHTEN ? // murs un poil visibles
 			// SUBTRACT
 
-			// draw monsters
+			// draw particles
 			var entitiesTypeArray:Array<Dynamic> = new Array<Dynamic>();
+			HXP.scene.getType("EmitterEntity", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				cast(el, Entity).render();
+			}
+			// draw monsters
+			entitiesTypeArray = [];
 			HXP.scene.getType("Monster", entitiesTypeArray);
 			for (el in entitiesTypeArray) {
 				var e = cast(el, Entity);

@@ -1,5 +1,6 @@
 package ;
 import control.Level;
+import entitites.EmitterEntity;
 import entitites.Player;
 import entitites.Monster;
 
@@ -21,6 +22,7 @@ class G
 	public static var level:Level;
 	public static var player:Player;
 	public static var monstersList:Array<Monster> = new Array<Monster>();
+	public static var emitter:EmitterEntity;
 	
 	
 	public static var transition:Bool = false;
