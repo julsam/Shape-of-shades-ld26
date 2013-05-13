@@ -11,6 +11,7 @@ import control.Level;
 import entitites.BorderLimit;
 import entitites.EmitterEntity;
 import entitites.GradientBackdrop;
+import entitites.HelpText;
 import entitites.KeysText;
 import entitites.Monster;
 import entitites.Player;
@@ -164,9 +165,13 @@ class GameScene extends Scene
 		v.setLightLocation(G.player.x, G.player.y);
 		v.sweep();
 		
+		add(G.emitter = new EmitterEntity());
+
 		add(new KeysText());
 
-		add(G.emitter = new EmitterEntity());
+		if (G.currentLevel == 0) {
+			add(new HelpText());
+		}
 	}
 	
 	override public function update():Dynamic 
@@ -335,6 +340,18 @@ class GameScene extends Scene
 			}
 			// draw player
 			cast(G.player, Entity).render();
+			// draw help text
+			entitiesTypeArray = [];
+			HXP.scene.getType("HelpText", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				cast(el, Entity).render();
+			}
+			// draw keys text
+			entitiesTypeArray = [];
+			HXP.scene.getType("KeysText", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				cast(el, Entity).render();
+			}
 		}
 	}
 	

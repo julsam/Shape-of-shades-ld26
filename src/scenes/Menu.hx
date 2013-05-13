@@ -22,7 +22,7 @@ class Menu extends Scene
 		HXP.screen.color = 0xffffff;
 		
 		var title:Text = new Text("Shape of shades");
-		title.font = "font/CantoraOne-Regular.ttf";
+		title.font = "font/GOTHIC.TTF";
 		title.size = 48;
 		title.color = 0x000000;
 		title.x = 640 / 2 - title._field.textWidth / 2;
@@ -30,7 +30,7 @@ class Menu extends Scene
 		addGraphic(title);
 		
 		var ld:Text = new Text("Ludum Dare #26 - @allinlabs");
-		ld.font = "font/CantoraOne-Regular.ttf";
+		ld.font = "font/GOTHIC.TTF";
 		ld.size = 32;
 		ld.color = 0x000000;
 		ld.x = 640 / 2 - ld._field.textWidth / 2;
@@ -38,7 +38,7 @@ class Menu extends Scene
 		addGraphic(ld);
 		
 		var click:Text = new Text("Click to start.");
-		click.font = "font/CantoraOne-Regular.ttf";
+		click.font = "font/GOTHIC.TTF";
 		click.size = 32;
 		click.color = 0x000000;
 		click.x = 640 / 2 - click._field.textWidth / 2;
