@@ -96,7 +96,7 @@ class Player extends Entity
 		
 		// Emit particles
 		G.emitter.emit(x, y);
-
+		
 		super.update();
 	}
 	
@@ -109,10 +109,11 @@ class Player extends Entity
 		if (Input.check("left")) movement.x = -1;
 		if (Input.check("right")) movement.x = 1;
 		
-		if (x <= width && HXP.sign(movement.x) == -1) 					movement.x = 0;
-		if (x >= G.level.width - width && HXP.sign(movement.x) == 1) 	movement.x = 0;
-		if (y <= height && HXP.sign(movement.y) == -1) 					movement.y = 0;
-		if (y >= G.level.height - height && HXP.sign(movement.y) == 1) 	movement.y = 0;
+		var margin:Int = 5;
+		if (x <= margin && HXP.sign(movement.x) == -1) 					movement.x = 0;
+		if (x >= G.level.width - margin && HXP.sign(movement.x) == 1) 	movement.x = 0;
+		if (y <= margin && HXP.sign(movement.y) == -1) 					movement.y = 0;
+		if (y >= G.level.height - margin && HXP.sign(movement.y) == 1) 	movement.y = 0;
 		
 		movement.normalize(1);
 		velocity.x = HXP.elapsed * 110 * movement.x;
