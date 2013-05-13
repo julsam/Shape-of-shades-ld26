@@ -4,6 +4,8 @@ import com.haxepunk.graphics.Graphiclist;
 import com.haxepunk.graphics.Spritemap;
 import com.haxepunk.HXP;
 import com.haxepunk.Entity;
+import com.haxepunk.Tween;
+import com.haxepunk.tweens.misc.Alarm;
 import scenes.GameScene;
 
 /**
@@ -35,6 +37,21 @@ class Key extends AbstractEntity
 		centerOrigin();
 	}
 	
+	override public function added():Void 
+	{
+		super.added();
+		addTween(new Alarm(Math.random() * 10, removeAlarm, TweenType.OneShot), true);
+	}
+	
+	private function removeAlarm(_):Void
+	{
+		var j:Int = HXP.choose([1, 2, 3]);
+		for (i in 0...j) {
+			scene.create(DiamondShape).spawn(x, y, (i + 1) * 0.5, false);
+		}
+		addTween(new Alarm(10 + Math.random() * 10, removeAlarm, TweenType.OneShot), true);
+	}
+	
 	override public function update():Void 
 	{
 		bgSprite.color = GameScene.tweenBgColor.color;
@@ -44,6 +61,9 @@ class Key extends AbstractEntity
 	
 	public function destroy():Void
 	{
+		scene.create(DiamondShape).spawn(x, y, 0.01);
+		scene.create(DiamondShape).spawn(x, y, 0.20);
+		scene.create(DiamondShape).spawn(x, y, 0.40);
 		scene.remove(this);
 	}
 }

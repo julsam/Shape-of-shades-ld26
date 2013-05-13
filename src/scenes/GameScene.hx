@@ -318,6 +318,14 @@ class GameScene extends Scene
 					e.render();
 				}
 			}
+			// draw diamond
+			entitiesTypeArray = [];
+			HXP.scene.getType("DiamondShape", entitiesTypeArray);
+			for (el in entitiesTypeArray) {
+				cast(el, Entity).render();
+			}
+			// draw player
+			cast(G.player, Entity).render();
 		}
 	}
 	
