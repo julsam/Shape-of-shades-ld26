@@ -68,7 +68,6 @@ class Bullet extends AbstractEntity
 		
 		bgSprite.angle += 120 * HXP.elapsed;
 		sprite.angle += 120 * HXP.elapsed;
-		//graphic = new Graphiclist([bgSprite, sprite]);
 		
 		if (x <= 0 + halfWidth) 					destroy();
 		else if (x >= G.level.width - halfWidth) 	destroy();

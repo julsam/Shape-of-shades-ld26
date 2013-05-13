@@ -3,7 +3,7 @@
 	<!-- NMML reference: https://gist.github.com/1763850 -->
 	
 	<!-- metadata, make sure 'package' is at least 3 segments (ie. com.mycompany.myproject) -->
-	<meta title="LD26" package="com.example.app" version="1.0.0" company="julsam" />
+	<meta title="LD26" package="net.allinlabs.ld26" version="1.1.0" company="julsam" />
 	
 	<!-- output -->
 	<app main="Main" file="LD26" path="bin" />

@@ -2,7 +2,6 @@ package ;
 
 import scenes.GameOver;
 import scenes.GameScene;
-import scenes.GameScene2;
 import scenes.Menu;
 
 import nme.events.KeyboardEvent;

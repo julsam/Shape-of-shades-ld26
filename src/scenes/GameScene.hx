@@ -77,7 +77,8 @@ class GameScene extends Scene
 		Input.define("transparent", [Key.SPACE]);
 		
 		G.currentLevel = 0;
-		G.levels.push("levels/level03.oel"); // 1
+		//G.levels.push("levels/test1.oel");
+		G.levels.push("levels/level03b.oel"); // 1
 		G.levels.push("levels/level04.oel"); // 2
 		G.levels.push("levels/level05.oel"); // 3
 		G.levels.push("levels/level01.oel"); // 4
@@ -85,14 +86,6 @@ class GameScene extends Scene
 		G.levels.push("levels/level06.oel"); // 6
 		G.levels.push("levels/level07.oel"); // 7
 		G.levels.push("levels/level08.oel"); // 8
-		
-		selectColorPalette();
-		
-		tweenBgColor = new ColorTween(changeBgColor);
-		twColorTimer = 7.0;
-		tweenBgColor.color = 0x383747;
-		addTween(tweenBgColor);
-		changeBgColor(null);
 		
 		transitionAlpha = 0;
 		transitionType = "";
@@ -102,7 +95,7 @@ class GameScene extends Scene
 		music.play();
 	}
 		
-	private function changeBgColor(_):Void
+	private function changeBgColor(?_):Void
 	{	
 		tweenBgColor.tween(twColorTimer, tweenBgColor.color, HXP.choose(bgColors));
 		tweenBgColor.start();
@@ -127,9 +120,15 @@ class GameScene extends Scene
 	public function loadLevel():Void
 	{
 		resetData();
-		
+			
 		selectColorPalette();
-		backgroundPattern = HXP.choose([HXP.getBitmap("gfx/dotted2.png"), HXP.getBitmap("gfx/dotted3.png"), null]);
+		tweenBgColor = new ColorTween(changeBgColor);
+		twColorTimer = 7.0;
+		tweenBgColor.color = 0x383747;
+		addTween(tweenBgColor);
+		changeBgColor();
+		
+		backgroundPattern = HXP.choose([HXP.getBitmap("gfx/dotted2.png"), HXP.getBitmap("gfx/dotted3.png"), HXP.getBitmap("gfx/dotted4_t.png"), HXP.getBitmap("gfx/dotted5.png"), null]);
 		
 		add(G.level = new Level(G.levels[G.currentLevel]));
 		add(backdrop = new GradientBackdrop());
@@ -152,11 +151,11 @@ class GameScene extends Scene
 		borderLimitList.push(new BorderLimit(BORDER_TOP));
 		borderLimitList.push(new BorderLimit(BORDER_RIGHT));
 		borderLimitList.push(new BorderLimit(BORDER_BOTTOM));
-		borderLimitList.push(new BorderLimit(BORDER_LEFT));
+		borderLimitList.push(new BorderLimit(BORDER_LEFT));		
 		for (el in borderLimitList) {
 			add(el);
 		}
-
+		
 		blocks = new Array<Visibility.Block>();
 		var segs:Array<Visibility.Segment> = new Array<Visibility.Segment>();
 		
@@ -166,9 +165,9 @@ class GameScene extends Scene
 		v.sweep();
 		
 		add(G.emitter = new EmitterEntity());
-
+		
 		add(new KeysText());
-
+		
 		if (G.currentLevel == 0) {
 			add(new HelpText());
 		}
@@ -227,8 +226,7 @@ class GameScene extends Scene
 				transitionType = "nextLevel";
 			}
 		}
-		
-		if (G.player.dead)
+		else if (G.player.dead)
 		{
 			G.transition = true;
 			transitionType = "reload";
@@ -289,7 +287,7 @@ class GameScene extends Scene
 			// LIGHTEN	// murs non visibles
 			// SCREEN - pareil que ADD et LIGHTEN ? // murs un poil visibles
 			// SUBTRACT
-
+			
 			// draw particles
 			var entitiesTypeArray:Array<Dynamic> = new Array<Dynamic>();
 			HXP.scene.getType("EmitterEntity", entitiesTypeArray);

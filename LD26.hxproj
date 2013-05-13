@@ -5,7 +5,7 @@
     <movie outputType="Application" />
     <movie input="" />
     <movie path="Project.nmml" />
-    <movie fps="60" />
+    <movie fps="30" />
     <movie width="640" />
     <movie height="480" />
     <movie version="3" />
