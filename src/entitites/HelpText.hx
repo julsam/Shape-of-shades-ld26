@@ -28,7 +28,6 @@ class HelpText extends Entity
 		type = "HelpText";
 		collidable = false;
 		visible = false;
-		active = false;
 		
 		text = new Text("Press <Space> to go through walls.\nCollect keys and go to the exit.");
 		text.font = "font/GOTHIC.TTF";
@@ -45,7 +44,7 @@ class HelpText extends Entity
 		graphic.scrollX = 0;
 		graphic.scrollY = 0;
 		
-		addTween(new Alarm(15, onAlarmComplete, TweenType.OneShot), true);
+		addTween(new Alarm(12, onAlarmComplete, TweenType.OneShot), true);
 	}
 	
 	private function onAlarmComplete(_):Void
